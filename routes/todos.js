@@ -28,8 +28,7 @@ router.post('/create', async (req, res) => {
 
 router.post('/complete', async (req, res) => {
   const todo = await Todo.findById(req.body.id)
-  // console.log(req.body.id)
-  todo.completed = true
+  todo.completed = !!req.body.completed
   await todo.save()
   res.redirect('/')
 })
