@@ -4,30 +4,38 @@
       <h2>Todos page</h2>
 
       {{#if todos.length}}
-        <ul>
-          {{#each todos}}
-            <li class='todo'>
-              <form action='/complete' method='post'>
-                <label>
-                  {{#if completed}}
-                    <input type='checkbox' checked name='completed' />
-                    <span class='completed'>{{title}}</span>
-                  {{else}}
-                    <input type='checkbox' name='completed' />
-                    <span>{{title}}</span>
-                  {{/if}}
 
-                  <input type='hidden' name='id' id='{{_id}}' />
+        {{#each todos}}
 
-                  <button
-                    class='btn btn-small btn-primary'
-                    type='submit'
-                  >Save</button>
-                </label>
-              </form>
-            </li>
-          {{/each}}
-        </ul>
+          <form action='/complete' method='post'>
+            <div class='input-group mb-3 flex-nowrap'>
+              {{#if completed}}
+
+                <div class='input-group-text'>
+                  <input type='checkbox' checked name='completed' />
+                  <span class='completed'>{{title}}</span>
+                </div>
+
+              {{else}}
+
+                <div class='input-group-text'>
+                  <input type='checkbox' name='completed' />
+                  <span>{{title}}</span>
+                </div>
+
+              {{/if}}
+
+              <input type='hidden' name='id' value='{{_id}}' />
+
+              <button
+                class='btn btn-small btn-primary'
+                type='submit'
+              >Save</button>
+            </div>
+          </form>
+
+        {{/each}}
+
       {{else}}
         <p>No todos!</p>
       {{/if}}
